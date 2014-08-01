@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A86CD9E198C444E00553CA4 /* gradientUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86CD9D198C444E00553CA4 /* gradientUITableView.swift */; };
 		0AF86C5E198836410093AE93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF86C5D198836410093AE93 /* AppDelegate.swift */; };
 		0AF86C60198836410093AE93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF86C5F198836410093AE93 /* ViewController.swift */; };
 		0AF86C63198836410093AE93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF86C61198836410093AE93 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A86CD9D198C444E00553CA4 /* gradientUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gradientUITableView.swift; sourceTree = "<group>"; };
 		0AF86C58198836410093AE93 /* GradientTableExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GradientTableExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF86C5C198836410093AE93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF86C5D198836410093AE93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				0AF86C5D198836410093AE93 /* AppDelegate.swift */,
 				0AF86C5F198836410093AE93 /* ViewController.swift */,
+				0A86CD9D198C444E00553CA4 /* gradientUITableView.swift */,
 				0AF86C61198836410093AE93 /* Main.storyboard */,
 				0AF86C64198836410093AE93 /* Images.xcassets */,
 				0AF86C5B198836410093AE93 /* Supporting Files */,
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A86CD9E198C444E00553CA4 /* gradientUITableView.swift in Sources */,
 				0AF86C60198836410093AE93 /* ViewController.swift in Sources */,
 				0AF86C5E198836410093AE93 /* AppDelegate.swift in Sources */,
 			);
@@ -397,6 +401,7 @@
 				0AF86C76198836410093AE93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0AF86C77198836410093AE93 /* Build configuration list for PBXNativeTarget "GradientTableExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +410,7 @@
 				0AF86C79198836410093AE93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

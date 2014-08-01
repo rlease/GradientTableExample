@@ -9,22 +9,19 @@
 import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    @IBOutlet weak var gradientTableView: UITableView!
+    @IBOutlet weak var gradientTableView: gradientUITableView!
     @IBOutlet weak var numberOfRowsTextField: UITextField!
     @IBOutlet weak var startingColorTextField: UITextField!
     @IBOutlet weak var endingColorTextField: UITextField!
     @IBOutlet weak var startingColorUIView: UIView!
     @IBOutlet weak var endingColorUIView: UIView!
     
-    var backgroundColors = [UIColor]()
-    var numberOfRows = 10
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextfields()
-        setupColors()
+        gradientTableView.setupColorsWithStrings(startingColorTextField.text, end: endingColorTextField.text)
     }
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -33,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: Table handling 
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return gradientTableView.numberOfRows
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -44,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!)
     {
         cell.textLabel.text = "test"
-        cell.backgroundColor = backgroundColors[indexPath.row]
+        cell.backgroundColor = gradientTableView.backgroundColors[indexPath.row]
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
@@ -87,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             if(numberOfRowsTextField.text.isEmpty)
             {
-                numberOfRows = 10
+                gradientTableView.numberOfRows = 10
                 numberOfRowsTextField.text = "10"
             }
         }
@@ -111,85 +108,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Clear the current background colors and recalculate
         if(textField == numberOfRowsTextField)
         {
-            backgroundColors = []
-            numberOfRows = numberOfRowsTextField.text.toInt()!
+            gradientTableView.backgroundColors = []
+            gradientTableView.numberOfRows = numberOfRowsTextField.text.toInt()!
         }
         else if (textField == startingColorTextField)
         {
-            backgroundColors = []
-            let hexcolor : UInt32 = hexFromString(startingColorTextField.text)
-            let newstartcolor = UIColorFromRGB(UInt(hexcolor))
+            gradientTableView.backgroundColors = []
+            let hexcolor : UInt32 = gradientTableView.hexFromString(startingColorTextField.text)
+            let newstartcolor = gradientTableView.UIColorFromRGB(UInt(hexcolor))
             startingColorUIView.backgroundColor = newstartcolor
         }
         else if(textField == endingColorTextField)
         {
-            backgroundColors = []
-            let hexcolor : UInt32 = hexFromString(endingColorTextField.text)
-            let newstartcolor = UIColorFromRGB(UInt(hexcolor))
+            gradientTableView.backgroundColors = []
+            let hexcolor : UInt32 = gradientTableView.hexFromString(endingColorTextField.text)
+            let newstartcolor = gradientTableView.UIColorFromRGB(UInt(hexcolor))
             endingColorUIView.backgroundColor = newstartcolor
         }
-        setupColors()
+        gradientTableView.setupColorsWithStrings(startingColorTextField.text, end: endingColorTextField.text)
         gradientTableView.reloadData()
         textField.resignFirstResponder()
         return true
-    }
-    
-    // MARK: Color management methods
-    
-    //Specify a starting color and ending color for the gradient, calculates all the colors needed for the table
-    //Saves them to the backgroundColors array
-    func setupColors()
-    {
-        let startcolor = UIColorFromRGB(UInt(hexFromString(startingColorTextField.text)))
-        let endcolor = UIColorFromRGB(UInt(hexFromString(endingColorTextField.text)))
-        
-        for i in (0 ..< numberOfRows) {
-            if(i==0) {
-                backgroundColors.append(startcolor)
-            }
-            else {
-                backgroundColors.append(findBackgroundColor(i, startColor: startcolor, endColor: endcolor))
-            }
-        }
-    }
-    
-    //create a unsigned integer from a string
-    func hexFromString(colorstring: String) -> UInt32
-    {
-        var hexcolor: UInt32 = 0
-        let scanner : NSScanner = NSScanner(string: colorstring)
-        scanner.scanHexInt(&hexcolor)
-        return hexcolor
-    }
-    
-    //newColor is the percentage change for each row multiplied by the distance between the two colors
-    //this number is subtracted from the starting color piecewise from red, green, and blue values respectively
-    func findBackgroundColor(row: Int, startColor: UIColor, endColor: UIColor) -> UIColor {
-        let startcomponents = CGColorGetComponents(startColor.CGColor)
-        let endcomponents = CGColorGetComponents(endColor.CGColor)
-        
-        let r = (startcomponents[0] - endcomponents[0])
-        let g = (startcomponents[1] - endcomponents[1])
-        let b = (startcomponents[2] - endcomponents[2])
-        let a = (startcomponents[3] - endcomponents[3])
-        
-        let perchange = CGFloat(row)/CGFloat(numberOfRows-1)
-        let rdelta = (perchange * r)
-        let gdelta = (perchange * g)
-        let bdelta = (perchange * b)
-        let adelta = (perchange * a)
-        
-        let newColor: UIColor = UIColor(red: fabs(startcomponents[0] - rdelta), green: fabs(startcomponents[1] - gdelta), blue: fabs(startcomponents[2] - bdelta), alpha: fabs(startcomponents[3] - adelta))
-        return newColor
-    }
-    
-    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
     }
     
 }
