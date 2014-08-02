@@ -10,9 +10,28 @@ import UIKit
 
 class gradientUITableView : UITableView
 {
-    var backgroundColors = [UIColor]()
-    var numberOfRows = 10
+    private var backgroundColors = [UIColor]()
+    private var numberOfRows : Int = 10
     
+    // MARK: Getters
+    
+    func getNumberOfRows() -> Int
+    {
+        return numberOfRows
+    }
+    
+    func getBackgroundColors() -> [UIColor]
+    {
+        return backgroundColors
+    }
+    
+    // MARK: Setters
+    
+    func setNumberOfRows(rows: Int)
+    {
+        numberOfRows = rows
+    }
+        
     // MARK: Color management methods
     
     //Specify a starting color and ending color for the gradient, calculates all the colors needed for the table
@@ -83,5 +102,10 @@ class gradientUITableView : UITableView
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+    
+    func clearBackgroundColors ()
+    {
+        backgroundColors = []
     }
 }

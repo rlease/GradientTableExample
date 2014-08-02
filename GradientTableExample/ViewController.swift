@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: Table handling 
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return gradientTableView.numberOfRows
+        return gradientTableView.getNumberOfRows()
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!)
     {
         cell.textLabel.text = "test"
-        cell.backgroundColor = gradientTableView.backgroundColors[indexPath.row]
+        cell.backgroundColor = gradientTableView.getBackgroundColors()[indexPath.row]
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
@@ -84,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             if(numberOfRowsTextField.text.isEmpty)
             {
-                gradientTableView.numberOfRows = 10
+                gradientTableView.setNumberOfRows(10)
                 numberOfRowsTextField.text = "10"
             }
         }
@@ -108,19 +108,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Clear the current background colors and recalculate
         if(textField == numberOfRowsTextField)
         {
-            gradientTableView.backgroundColors = []
-            gradientTableView.numberOfRows = numberOfRowsTextField.text.toInt()!
+            gradientTableView.clearBackgroundColors()
+            gradientTableView.setNumberOfRows(numberOfRowsTextField.text.toInt()!)
         }
         else if (textField == startingColorTextField)
         {
-            gradientTableView.backgroundColors = []
+            gradientTableView.clearBackgroundColors()
             let hexcolor : UInt32 = gradientTableView.hexFromString(startingColorTextField.text)
             let newstartcolor = gradientTableView.UIColorFromRGB(UInt(hexcolor))
             startingColorUIView.backgroundColor = newstartcolor
         }
         else if(textField == endingColorTextField)
         {
-            gradientTableView.backgroundColors = []
+            gradientTableView.clearBackgroundColors()
             let hexcolor : UInt32 = gradientTableView.hexFromString(endingColorTextField.text)
             let newstartcolor = gradientTableView.UIColorFromRGB(UInt(hexcolor))
             endingColorUIView.backgroundColor = newstartcolor
