@@ -30,4 +30,4 @@ Enjoy!
 
 ![Gradient Table Example](http://gifyu.com/images/gradientTable.gif)
 
-You can reach me on Twitter, ![@_rlease](http://twitter.com/_rlease)
+You can reach me on Twitter, [@_rlease](http://twitter.com/_rlease)
