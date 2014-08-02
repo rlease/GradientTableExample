@@ -19,6 +19,6 @@ How to use:
   
 Enjoy!
 
-![Gradient Table Image](http://www.gfycat.com/ImmediateLavishInchworm)
+[![Gradient Table Example](http://www.gfycat.com/ImmediateLavishInchworm)](http://www.gfycat.com/ImmediateLavishInchworm)
 
 You can reach me on Twitter, @_rlease
