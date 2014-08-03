@@ -10,7 +10,8 @@ How to use:
 
 1. Add a UITableView to a view controller either through Interface Builder or initialized through code. 
 2. Add starting and ending colors for the table view gradient through either of the following methods
-  1.If you have specific UIColors already, use the regular setupColors method
+  
+  1. If you have specific UIColors already, use the regular setupColors method
 
   ```
   setupColors(startcolor: UIColor, endcolor: UIColor)
