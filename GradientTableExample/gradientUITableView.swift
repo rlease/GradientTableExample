@@ -25,6 +25,11 @@ class gradientUITableView : UITableView
         return backgroundColors
     }
     
+    func getBackgroundColorAtRow(row: Int) -> UIColor
+    {
+        return backgroundColors[row]
+    }
+    
     // MARK: Setters
     
     func setNumberOfRows(rows: Int)

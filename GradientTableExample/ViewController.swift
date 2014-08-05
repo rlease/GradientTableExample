@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!)
     {
         cell.textLabel.text = "test"
-        cell.backgroundColor = gradientTableView.getBackgroundColors()[indexPath.row]
+        cell.backgroundColor = gradientTableView.getBackgroundColorAtRow(indexPath.row)
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
@@ -70,7 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let matches : NSNumber = regex.numberOfMatchesInString(currentstring, options: nil, range: NSMakeRange(0, currentstring.length))
             
-            if(matches == 0) {
+            if(!(matches > 0)) {
                 return false
             }
         }
@@ -95,7 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let matches: NSNumber = regex.numberOfMatchesInString(textField.text, options: nil, range: NSMakeRange(0, (textField.text as NSString).length))
             
-            if(matches == 0) {
+            if(!(matches > 0)) {
                 return false
             }
         }
